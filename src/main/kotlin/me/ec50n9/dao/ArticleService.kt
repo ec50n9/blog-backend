@@ -1,7 +1,7 @@
 package me.ec50n9.dao
 
+import me.ec50n9.dto.ExposedArticle
 import me.ec50n9.models.Articles
-import me.ec50n9.models.ExposedArticle
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.transactions.transaction

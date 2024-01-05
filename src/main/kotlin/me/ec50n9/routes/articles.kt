@@ -18,5 +18,7 @@ fun Application.articlesRouting() {
             articleService.addNewArticle("新的文章", "这是内容哈哈哈")
             call.respond(HttpStatusCode.OK, articleService.allArticles())
         }
+        get("/fail-test") {
+        }
     }
 }

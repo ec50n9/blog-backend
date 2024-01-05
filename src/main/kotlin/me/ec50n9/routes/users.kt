@@ -7,7 +7,8 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import me.ec50n9.dao.DatabaseSingleton
 import me.ec50n9.dao.UserService
-import me.ec50n9.models.ExposedUser
+import me.ec50n9.dto.CreateUser
+import me.ec50n9.dto.UpdateUser
 
 fun Application.usersRouting(){
     val userService = UserService(DatabaseSingleton.database)
@@ -19,7 +20,7 @@ fun Application.usersRouting(){
         }
         // Create user
         post("/users") {
-            val user = call.receive<ExposedUser>()
+            val user = call.receive<CreateUser>()
             val id = userService.create(user)
             call.respond(HttpStatusCode.Created, id)
         }
@@ -36,7 +37,7 @@ fun Application.usersRouting(){
         // Update user
         put("/users/{id}") {
             val id = call.parameters["id"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
-            val user = call.receive<ExposedUser>()
+            val user = call.receive<UpdateUser>()
             userService.update(id, user)
             call.respond(HttpStatusCode.OK)
         }
